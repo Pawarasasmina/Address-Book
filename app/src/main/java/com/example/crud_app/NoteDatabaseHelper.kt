@@ -38,8 +38,8 @@ class NoteDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         db.close()
     }
 
-    fun getAllNotes():List<Note>{
-        val notesList = mutableListOf<Note>()
+    fun getNotes():List<Note>{
+        val noteList = mutableListOf<Note>()
         val db = readableDatabase
         val retrievequery = "SELECT * FROM $TABLE_NAME"
         val cursor = db.rawQuery(retrievequery, null)
@@ -50,11 +50,37 @@ class NoteDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
             val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
 
             val note = Note(id, title, content)
-            notesList.add(note)
+            noteList.add(note)
         }
         cursor.close()
         db.close()
-        return notesList
+        return noteList
     }
 
+    fun update(note: Note){
+        val db = writableDatabase
+        val values = ContentValues().apply{
+            put(COLUMN_TITLE, note.title)
+            put(COLUMN_CONTENT, note.content)
+        }
+        val whereClause = "$COLUMN_ID = ?"
+        val whereArgs = arrayOf(note.id.toString())
+        db.update(TABLE_NAME, values, whereClause, whereArgs)
+        db.close()
+    }
+
+    fun getnoteById(noteId: Int): Note{
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $noteId"
+        val cursor = db.rawQuery(query, null)
+        cursor.moveToFirst()
+
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+        val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+        val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+
+        cursor.close()
+        db.close()
+        return Note(id, title, content)
+    }
 }
