@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CRUD_APP</string>
+
+    <string-array name="sorting_options_array">
+        <item>Created Time Order</item>
+        <item>Alphabetical Order</item>
+    </string-array>
 </resources>

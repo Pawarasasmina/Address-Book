@@ -1,19 +1,17 @@
 package com.example.crud_app
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.crud_app.R
 
 class UpdateActivity : AppCompatActivity() {
 
-    private lateinit var db: NoteDatabaseHelper
-    private var noteId: Int = -1
-    private lateinit var updateTitleEditText: EditText
-    private lateinit var updateContentEditText: EditText
+    private lateinit var db: DatabaseHelper
+    private var addressId: Int = -1
+    private lateinit var updateNameEditText: EditText
+    private lateinit var updateAddressEditText: EditText
     private lateinit var updateButton: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,34 +19,38 @@ class UpdateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_update)
 
         // Initializing database helper
-        db = NoteDatabaseHelper(this)
+        db = DatabaseHelper(this)
 
         // Getting note ID from Intent
-        noteId = intent.getIntExtra("note_id", -1)
-        if (noteId == -1) {
-            Toast.makeText(this, "Error: No note ID provided.", Toast.LENGTH_SHORT).show()
+        addressId = intent.getIntExtra("address_id", -1)
+        if (addressId == -1) {
+            Toast.makeText(this, "Error: No Address ID provided.", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
         // Initializing EditTexts and Button using findViewById
-        updateTitleEditText = findViewById(R.id.updatetitle)
-        updateContentEditText = findViewById(R.id.updatecontent)
+        updateNameEditText = findViewById(R.id.updatename)
+        updateAddressEditText = findViewById(R.id.updateadress)
         updateButton = findViewById(R.id.UpdateButton)
 
         // Load the note details into the EditTexts
-        val note = db.getnoteById(noteId)
-        updateTitleEditText.setText(note.title)
-        updateContentEditText.setText(note.content)
+        val adress = db.getAddressById(addressId)
+        updateNameEditText.setText(adress.name)
+        updateAddressEditText.setText(adress.address)
 
         // Setting onClickListener for the update button
         updateButton.setOnClickListener {
-            val newTitle = updateTitleEditText.text.toString()
-            val newContent = updateContentEditText.text.toString()
-            val updatedNote = Note(noteId, newTitle, newContent)
-            db.update(updatedNote)
-            Toast.makeText(this, "Note Edited!", Toast.LENGTH_SHORT).show()
-            finish()
+            val newName = updateNameEditText.text.toString()
+            val newAddress = updateAddressEditText.text.toString()
+            if(newName.isNotBlank() && newAddress.isNotBlank()) {
+                val updatedAddress = Address(addressId, newName, newAddress)
+                db.update(updatedAddress)
+                Toast.makeText(this, "Address Edited!", Toast.LENGTH_SHORT).show()
+                finish()
+            }else{
+                Toast.makeText(this, "Name and Address cannot be empty !", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

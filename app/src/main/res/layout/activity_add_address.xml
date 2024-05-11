@@ -8,35 +8,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".UpdateActivity">
+    tools:context=".AddAddressActivity">
 
     <TextView
-        android:id="@+id/editAdressHeading"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/addadressHeading"
+        android:layout_width="261dp"
+        android:layout_height="66dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
         android:fontFamily="@font/poppins"
-        android:text="Edit Address"
+        android:text="Add Address"
         android:textColor="@color/purple"
-        android:textSize="24sp"
+        android:textSize="40dp"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/UpdateButton"
-        android:layout_width="38dp"
-        android:layout_height="34dp"
-        android:layout_alignTop="@id/editAdressHeading"
+        android:id="@+id/saveButton"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@id/addadressHeading"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="29dp"
+        android:layout_marginEnd="14dp"
         android:src="@drawable/baseline_done_24" />
 
     <EditText
-        android:id="@+id/updatename"
+        android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/editAdressHeading"
+        android:layout_below="@id/addadressHeading"
         android:layout_marginTop="16dp"
         android:background="@drawable/purple_border"
         android:fontFamily="@font/poppins"
@@ -46,10 +46,10 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/updateadress"
+        android:id="@+id/adressEditText"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@id/updatename"
+        android:layout_below="@id/nameEditText"
         android:layout_marginTop="12dp"
         android:background="@drawable/purple_border"
         android:fontFamily="@font/poppins"
