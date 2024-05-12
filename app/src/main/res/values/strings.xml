@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CRUD_APP</string>
+    <string name="app_name">Address Book</string>
 
     <string-array name="sorting_options_array">
         <item>Created Time Order</item>
