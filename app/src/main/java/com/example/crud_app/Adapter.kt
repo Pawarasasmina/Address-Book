@@ -84,6 +84,7 @@ class Adapter (private var addresses :List<Address>, private val context: Contex
     }
 
     fun refreshData(newAddress: List<Address>) {
+        addressesFull = newAddress  // Update the full list to reflect the latest data
         addresses = newAddress
         notifyDataSetChanged()
     }
