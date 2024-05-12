@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 class Adapter (private var addresses :List<Address>, private val context: Context) : RecyclerView.Adapter<Adapter.NoteViewHolder>() {
 
     private val db: DatabaseHelper = DatabaseHelper(context)
-
+    private var addressesFull: List<Address> = ArrayList(addresses)
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.nameTextView)
         val contentTextView: TextView = itemView.findViewById(R.id.addressTextView)
@@ -85,6 +85,22 @@ class Adapter (private var addresses :List<Address>, private val context: Contex
 
     fun refreshData(newAddress: List<Address>) {
         addresses = newAddress
+        notifyDataSetChanged()
+    }
+
+
+    fun filter(query: String) {
+        addresses = if (query.isEmpty()) {
+            addressesFull
+        } else {
+            val resultList = ArrayList<Address>()
+            for (address in addressesFull) {
+                if (address.name.lowercase().contains(query.lowercase())) {
+                    resultList.add(address)
+                }
+            }
+            resultList
+        }
         notifyDataSetChanged()
     }
 }

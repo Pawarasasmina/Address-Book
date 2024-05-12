@@ -2,6 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape = "rectangle">
 
+    <!-- Add a solid fill color to the shape -->
+    <solid android:color="#7CFFFFFF" />
     <stroke
         android:width="3dp"
         android:color="@color/purple" />

@@ -25,9 +25,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesRecycleView"
         android:layout_width="match_parent"
-        android:layout_height="640dp"
+        android:layout_height="490dp"
         android:layout_below="@+id/sortingOptions"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:padding="16dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -45,6 +45,20 @@
         app:tint="@color/white" />
 
     <!-- Spinner for Sorting Options -->
+
+    <!-- Add a "Delete All" button -->
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Heading"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Search by name"
+        android:inputType="text" />
+
     <Spinner
         android:id="@+id/sortingOptions"
         android:layout_width="wrap_content"
@@ -52,10 +66,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="272dp" />
-    <!-- Add a "Delete All" button -->
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="275dp" />
+
     <Button
         android:id="@+id/deleteAllButton"
         android:layout_width="wrap_content"
